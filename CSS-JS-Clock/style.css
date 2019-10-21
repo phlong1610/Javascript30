@@ -1,14 +1,10 @@
-html {
+*{
+	margin: 0;
+	padding: 0;
+}        
+body {
 	background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
 	background-size: cover;
-	/* font-family: 'helvetica neue'; */
-	text-align: center;
-	font-size: 10px;
-}
-        
-body {
-	margin: 0;
-	font-size: 2rem;
 	display: flex;
 	min-height: 100vh;
 	align-items: center;
@@ -19,8 +15,9 @@ body {
 	border: 20px solid white;
 	border-radius: 50%;
 	margin: 0 auto;
-	padding: 6px;
+	padding: 20px;
 	position: relative;
+	box-shadow: 0 0 0 5px rgba(0,0,0,0.2);
 }
 .clock-face{
 	width: 100%;
@@ -30,7 +27,11 @@ body {
 .hand{
 	width: 50%;
 	height: 6px;
-	background: black;
+	background-color: black;
 	position: absolute;
 	top: 50%;
+	transform-origin: 100%;
+	transform: rotate(90deg);
+	transition: all 0.05s;
+	transition-timing-function: cubic-bezier(0.25, 0.1, 0.55, 2.65);
 }

@@ -8,10 +8,34 @@
 <body>
 	<div class="clock">
 		<div class="clock-face">
-			<div class="hand hour"></div>
-			<div class="hand min"></div>
-			<div class="hand second"></div>
+			<div class="hand hour-hand"></div>
+			<div class="hand min-hand"></div>
+			<div class="hand second-hand"></div>
 		</div>
 	</div>
+	<script>
+		const secondHand = document.querySelector('.second-hand');
+		const minHand = document.querySelector('.min-hand');
+		const hourHand = document.querySelector('.hour-hand');
+		function setClock(){
+			const now = new Date();
+			const second = now.getSeconds();
+			// 1 minute ~~ 60s ===== 1s ~~ 6deg
+			const secondDeg = ((second / 60) * 360) + 90;
+			secondHand.style.transform = `rotate(${secondDeg}deg)`;
+
+			// hour ~~ 60min ===== 1min ~~ 6deg + (second/60 * 6deg)
+			const minute = now.getMinutes();
+			const minuteDeg = ((minute / 60) * 360) + ((second / 60) * 6) + 90;
+			minHand.style.transform = `rotate(${minuteDeg}deg)`;
+
+			// half-day ~~ 12hour ===== 1hour ~~ 30deg + (min/60 * 30deg)
+			const hour = now.getHours();
+			const hourDeg = ((hour / 12) * 360) + ((minute / 60) * 30) + 90;
+			hourHand.style.transform = `rotate(${hourDeg}deg)`;
+		}
+		setInterval(setClock,1000);
+		setClock();
+	</script>
 </body>
 </html>
